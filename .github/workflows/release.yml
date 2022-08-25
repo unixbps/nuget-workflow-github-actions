@@ -24,7 +24,7 @@ jobs:
     - name: Set VERSION variable from tag
       run: echo "VERSION=v1.0.0" >> $GITHUB_ENV
     - name: Build
-      run: dotnet build --configuration Release /p:Version=${VERSION}
+      run: dotnet build --configuration Release
     - name: Test
       run: dotnet test --configuration Release --no-build
     - name: Pack
