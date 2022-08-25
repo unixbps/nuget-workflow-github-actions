@@ -16,9 +16,11 @@ jobs:
         fetch-depth: 0
     - name: Verify commit exists in origin/main
       run: git branch --remote --contains | grep origin/main
-    - name: Extract release notes
-      run: |
-        git log --pretty=format:'%d %s' ${GITHUB_REF} | perl -pe 's| \(.*tag: v(\d+.\d+.\d+(-preview\d{3})?)(, .*?)*\)|\n## \1\n|g' > RELEASE-NOTES
+#     - name: Extract release notes
+#       run: |
+#         git log --pretty=format:'%d %s' ${GITHUB_REF} | perl -pe 's| \(.*tag: v(\d+.\d+.\d+(-preview\d{3})?)(, .*?)*\)|\n## \1\n|g' > RELEASE-NOTES
+    - name: Release notes
+      run: export RELEASE-NOTES=v1.0.0
     - name: Set VERSION variable from tag
       run: echo "VERSION=v1.0.0" >> $GITHUB_ENV
     - name: Build
