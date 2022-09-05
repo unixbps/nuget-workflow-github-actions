@@ -12,13 +12,14 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+    - name: Setup .NET environment
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '3.1.102'
     - name: Build
       run: dotnet build --configuration Release
-    - name: Test
-      run: dotnet test --configuration Release --no-build
+
     - name: Pack
       run: dotnet pack --configuration Release --no-build --output .
     - name: Push
-      run: dotnet nuget push NuGet.Workflow.0.0.0.nupkg --source https://nuget.pkg.github.com/unixbps/index.json --api-key ${PUB_TOKEN}
-      env:
-        PUB_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
+      run: dotnet nuget push *.nupkg
