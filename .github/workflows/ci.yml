@@ -21,5 +21,8 @@ jobs:
 
     - name: Pack
       run: dotnet pack --configuration Release --no-build --output .
+    - name: Listing files
+      run: |
+        ls -ltr
     - name: Push
-      run: dotnet nuget push *.nupkg
+      run: dotnet nuget push *.nupkg -k ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/unixbps/index.json
