@@ -25,4 +25,4 @@ jobs:
       run: |
         ls -ltr
     - name: Push
-      run: dotnet nuget push *.nupkg -k ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/unixbps/index.json
+      run: dotnet nuget push *.nupkg -k ${{ secrets.PUBLISH_TOKEN }} -s https://nuget.pkg.github.com/unixbps/index.json
